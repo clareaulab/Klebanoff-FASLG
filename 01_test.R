@@ -56,6 +56,9 @@ collapse_7 <- g_df %>%
   summarize(totalP = sum(pct_exp*n)/100, totalN = sum(n)) %>%
   mutate(new_pct = totalP/totalN*100)
 
+write.table(collapse_7, file = "data_for_boxplots_ck.tsv",
+            sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE)
+
 library(lme4)
 collapse_7lm_axi <- collapse_7 %>% filter(what2 %in% c("D7CAR", "D7noCAR")) %>% filter(generic == "Axi-cel")
 collapse_7lm_tisa <- collapse_7 %>% filter(what2 %in% c("D7CAR", "D7noCAR")) %>% filter(generic == "Tisa-cel")
